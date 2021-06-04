@@ -14,8 +14,11 @@ def buttonPress(symbol):
 def equalsButtonPress():
     global display
     global displayText
-    displayText = ""
-    display.config(text=displayText)
+    try:
+        displayText = str(eval(displayText))
+    except:
+        displayText = ""
+    display.config(text= displayText)
     print("Press Equals Button")
 
 displayText = ""
