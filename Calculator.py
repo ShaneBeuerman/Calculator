@@ -1,11 +1,7 @@
 #Calculator
 import tkinter
 
-def badInput():
-    print("Bad")
-
 def buttonPress(symbol):
-    print("Press Button")
     global display
     global displayText
     displayText += symbol
@@ -19,10 +15,16 @@ def equalsButtonPress():
     except:
         displayText = ""
     display.config(text= displayText)
-    print("Press Equals Button")
+
+def clearButtonPress():
+    global display
+    global displayText
+    displayText = ""
+    display.config(text= displayText)
 
 displayText = ""
 GUI = tkinter.Tk()
+GUI.wm_title("Calculator")
 display = tkinter.Label(text=displayText)
 display.grid(row=0,column=4)
 b1 = tkinter.Button(text="  1  ", command= lambda cur = "1": buttonPress(cur))
@@ -49,7 +51,10 @@ bMinus = tkinter.Button(text="  -  ", command=lambda cur = "-": buttonPress(cur)
 bMinus.grid(row=2,column=3)
 bEquals = tkinter.Button(text="  =  ", command=equalsButtonPress)
 bEquals.grid(row=3, column=3)
+bDivide = tkinter.Button(text="  /  ", command=lambda cur = "/": buttonPress(cur))
+bDivide.grid(row=1, column=4)
+bMultiply = tkinter.Button(text="  *  ", command=lambda cur = "*": buttonPress(cur))
+bMultiply.grid(row=2, column=4)
+bClear = tkinter.Button(text="Clear", command = clearButtonPress)
+bClear.grid(row=3, column=4)
 GUI.mainloop()
-
-
-
